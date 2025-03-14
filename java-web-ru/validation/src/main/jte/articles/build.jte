@@ -27,15 +27,15 @@ content = @`
 
             <!-- Поле для содержания статьи -->
             <div class="mb-3">
-                <label for="body" class="form-label">Content</label>
-                <textarea class="form-control ${page.getErrors() != null && page.getErrors().containsKey("body") ? "is-invalid" : ""}"
-                          id="body"
-                          name="body"
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control ${page.getErrors() != null && page.getErrors().containsKey("content") ? "is-invalid" : ""}"
+                          id="content"
+                          name="content"
                           rows="10"
-                          required>${page.getBody()}</textarea>
-                @if(page.getErrors() != null && page.getErrors().containsKey("body"))
+                          required>${page.getContent()}</textarea>
+                @if(page.getErrors() != null && page.getErrors().containsKey("content"))
                     <div class="invalid-feedback">
-                        ${page.getErrors().get("body").getFirst().getMessage()}
+                        ${page.getErrors().get("content").getFirst().getMessage()}
                     </div>
                 @endif
             </div>

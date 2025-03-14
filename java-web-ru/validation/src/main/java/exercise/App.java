@@ -42,19 +42,24 @@ public final class App {
 
             try {
                 var title = ctx.formParamAsClass("title", String.class)
-                        .check(t -> t.length() >= 2, "Название не должно быть короче двух символов")
-                        .check(t -> ArticleRepository.findByTitle(t).isEmpty(), "Статья должна быть не короче 10 символов")
+                        .check(t -> t != null && t.length() >= 2, "Название не должно быть короче двух символов")
+                        .check(t -> ArticleRepository.findByTitle(t).isEmpty(), "Статья с таким названием уже существует")
                         .get();
 
                 var body = ctx
-                        .formParamAsClass("body", String.class).check(t -> t.length() >= 10, "Статья с таким названием уже существует")
+                        .formParamAsClass("content", String.class)
+                        .check(t -> t != null && t.length() >= 10, "Статья должна быть не короче 10 символов")
                         .get();
 
                 ArticleRepository.save(new Article(title, body));
 
                 ctx.redirect("/articles");
             } catch (ValidationException validationException) {
-                var page = new BuildArticlePage(ctx.formParamAsClass("title", String.class).get(), ctx.formParamAsClass("body", String.class).get(), validationException.getErrors());
+                var page = new BuildArticlePage(
+                        ctx.formParamAsClass("title", String.class).get(),
+                        ctx.formParamAsClass("content", String.class).get(),
+                        validationException.getErrors());
+                ctx.status(422);
                 ctx.render("articles/build.jte", model("page", page));
             }
 

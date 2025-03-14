@@ -14,7 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class BuildArticlePage {
     private String title;
-    private String body;
+    private String content;
     private Map<String, List<ValidationError<Object>>> errors;
 }
 // END
