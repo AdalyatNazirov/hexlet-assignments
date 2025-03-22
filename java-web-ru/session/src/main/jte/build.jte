@@ -1,4 +1,5 @@
 @import exercise.dto.LoginPage
+@import exercise.util.NamedRoutes
 @param LoginPage page
 
 @template.layout.page(content = @`
@@ -12,10 +13,10 @@
             </div>
         @endif
 
-        <form action="/login" method="post">
+        <form action="${NamedRoutes.loginPath()}" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Имя пользователя</label>
-                <input type="text" class="form-control" id="username" name="name" required>
+                <input type="text" class="form-control" id="username" name="name" value="${page.getName()}" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Пароль</label>

@@ -12,7 +12,7 @@
                 <button type="submit" class="btn btn-danger">Выйти</button>
             </form>
         @else
-            <p><a href="${NamedRoutes.loginPath()}" class="btn btn-primary">Войти</a></p>
+            <p><a href="${NamedRoutes.buildSessionPath()}" class="btn btn-primary">Войти</a></p>
         @endif
     </div>
 `)
