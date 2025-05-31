@@ -32,7 +32,7 @@ public class Application {
     }
 
     @GetMapping("/posts/{id}")
-    public Post show(@RequestParam String id) {
+    public Post show(@PathVariable String id) {
         return posts.stream().filter(post -> post.getId().equals(id)).findFirst().orElse(null);
     }
 
