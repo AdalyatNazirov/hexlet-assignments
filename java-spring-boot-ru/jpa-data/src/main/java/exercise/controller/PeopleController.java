@@ -30,7 +30,7 @@ public class PeopleController {
 
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person show(@RequestBody Person person) {
+    public Person create(@RequestBody Person person) {
         personRepository.save(person);
         return person;
     }
